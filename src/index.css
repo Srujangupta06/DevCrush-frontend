@@ -3,16 +3,12 @@
 @plugin "daisyui" {
   themes: light --default;
 }
+* {
+  font-family: "Inter", sans-serif;
+}
 body {
   background-image: linear-gradient(#f5fcff, #edf0fc);
   background-size: cover;
   background-repeat: no-repeat;
   min-height: 100vh;
-  font-family: "Inter", sans-serif;
 }
-/* .bg-hero-container {
-  background-image: url("https://res.cloudinary.com/djv3sgbxn/image/upload/v1744308541/bg-hero_mhepvu.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-} */

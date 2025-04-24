@@ -1,11 +1,20 @@
-import Header from "./components/Header";
+import { Route, Routes } from "react-router-dom";
+import Body from "./components/Body";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Hero from "./components/Hero";
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <h1 className="text-3xl font-semibold">Hello</h1>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Body />}>
+          <Route path="/" element={<Hero />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
+      </Routes>
+    </>
   );
 };
 

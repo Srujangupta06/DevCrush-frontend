@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import { logoUrl } from "../assets/assets";
 
 const Header = () => {
   return (
-    <div className="navbar bg-base-100 shadow-sm px-28">
-      <div className="flex-1">
+    <div className="navbar bg-base-100 shadow-sm px-16">
+      <Link to="/" className="flex-1">
         <img src={logoUrl} alt="logo" className="w-44" />
-      </div>
+      </Link>
       <div className="flex gap-2">
         <div className="dropdown dropdown-end">
           <div
@@ -25,12 +26,12 @@ const Header = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a className="justify-between">
+              <Link className="justify-between" to="/profile">
                 Profile
                 <span className="badge">New</span>
-              </a>
+              </Link>
             </li>
-            
+
             <li>
               <a>Logout</a>
             </li>
