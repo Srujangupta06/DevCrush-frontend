@@ -19,7 +19,10 @@
 - Installed Redux Toolkit
 - Configured Store and Provided to Application
 - Configured User Slice
-
+- Integrated User Profile with API in Header Component
+- User Authentication
+- Logout
+- Profile Page of Logged In User
 
 
 

@@ -1,10 +1,27 @@
 import { Link, useNavigate } from "react-router-dom";
 import { logoUrl } from "../assets/assets";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { removeUser } from "../utils/userSlice";
 
 const Header = () => {
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const onHandleLogOut = async () => {
+    try {
+      await axios.post(
+        BASE_URL + "/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      dispatch(removeUser());
+      navigate("/login");
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm px-16">
@@ -12,14 +29,6 @@ const Header = () => {
         <img src={logoUrl} alt="logo" className="w-44" />
       </Link>
       <div className="flex gap-2">
-        {!user && (
-          <button
-            className="hover:bg-[#9853a0] hover:border-[#9853a0] bg-[#BF5CC9] px-6 text-white py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]"
-            onClick={() => navigate("/login")}
-          >
-            Login
-          </button>
-        )}
         {user && (
           <div className="dropdown dropdown-end">
             <div
@@ -42,7 +51,7 @@ const Header = () => {
               </li>
 
               <li>
-                <a>Logout</a>
+                <button onClick={onHandleLogOut}>Logout</button>
               </li>
             </ul>
           </div>
