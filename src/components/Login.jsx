@@ -1,10 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-
+import { RxCross2 } from "react-icons/rx";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Tooltip as ReactTooltip } from "react-tooltip";
+import { addUser } from "../utils/userSlice";
+import { BASE_URL } from "../utils/constants";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const [email, setEmail] = useState("srujan@gmail.com");
+  const [password, setPassword] = useState("Srujan@0610");
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const onHandleLogin = (e) => {
     e.preventDefault();
     const userCredentials = {
@@ -17,11 +23,13 @@ const Login = () => {
   const checkLoggedInUser = async (userCredentials) => {
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/login",
+        BASE_URL + "/auth/login",
         userCredentials,
         { withCredentials: true }
       );
-      console.log(response.data);
+
+      dispatch(addUser(response.data.data));
+      navigate("/feed");
     } catch (err) {
       console.error(err);
     }
@@ -29,9 +37,19 @@ const Login = () => {
 
   return (
     <main className="min-h-[80vh] flex flex-col items-center justify-center">
-      <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl">
+      <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
+        <button
+          data-tooltip-id="close-login-tooltip"
+          data-tooltip-content={"Close"}
+          className="hover:bg-[#9853a0] cursor-pointer bg-[#BF5CC9] w-6 h-6 rounded-full flex flex-col items-center justify-center absolute top-[-15px] right-[-15px]"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <RxCross2 className="text-white" />
+        </button>
+        <ReactTooltip id="close-login-tooltip" />
         <h1 className="text-xl font-semibold text-center mb-4">Login</h1>
-
         <form className="px-8" onSubmit={onHandleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block mb-2">
