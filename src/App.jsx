@@ -4,9 +4,12 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Hero from "./components/Hero";
 import Feed from "./components/Feed";
+import { Toaster } from "react-hot-toast";
+import EditProfile from "./components/EditProfile";
 const App = () => {
   return (
     <>
+      <Toaster position="top-center" />
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<Body />}>

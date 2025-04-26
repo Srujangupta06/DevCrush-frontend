@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <main className="min-h-[80vh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-y-6">
@@ -12,7 +15,10 @@ const Hero = () => {
           Meet devs who share your stack, your vibe, or your startup dreams.
         </p>
         <div className="flex gap-x-6">
-          <button className="hover:bg-[#9853a0] hover:border-[#9853a0] bg-[#BF5CC9] px-6 text-white py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]">
+          <button
+            className="hover:bg-[#9853a0] hover:border-[#9853a0] bg-[#BF5CC9] px-6 text-white py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]"
+            onClick={() => navigate("/feed")}
+          >
             Pair Up Now
           </button>
           <button className="hover:text-[#9853a0] hover:border-[#9853a0] text-[#BF5CC9] px-6 py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]">

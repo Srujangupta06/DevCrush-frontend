@@ -23,6 +23,10 @@
 - User Authentication
 - Logout
 - Profile Page of Logged In User
+- Feed
+- Profile Updation including Image file upload
+
+
 
 
 
