@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
-
+import { toast } from "react-hot-toast";
 const Header = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -17,6 +17,9 @@ const Header = () => {
         { withCredentials: true }
       );
       dispatch(removeUser());
+      toast.success("Logout Successfull", {
+        duration: 2000,
+      });
       navigate("/login");
     } catch (err) {
       console.error(err);
@@ -47,6 +50,16 @@ const Header = () => {
               <li>
                 <Link className="justify-between" to="/profile">
                   Profile
+                </Link>
+              </li>
+              <li>
+                <Link className="justify-between" to="/requests">
+                  Requests
+                </Link>
+              </li>
+              <li>
+                <Link className="justify-between" to="/connections">
+                  Connections
                 </Link>
               </li>
 

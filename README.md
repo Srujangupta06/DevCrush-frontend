@@ -25,7 +25,9 @@
 - Profile Page of Logged In User
 - Feed
 - Profile Updation including Image file upload
-
+- Developed Connections Route to display all user connections
+- Page for to display all connection requests of loggedIn User
+- added functionality for accept or reject connection request
 
 
 

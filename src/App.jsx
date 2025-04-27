@@ -5,7 +5,8 @@ import Profile from "./components/Profile";
 import Hero from "./components/Hero";
 import Feed from "./components/Feed";
 import { Toaster } from "react-hot-toast";
-import EditProfile from "./components/EditProfile";
+import Connections from "./components/Connections";
+import ConnectionRequests from "./components/Request";
 const App = () => {
   return (
     <>
@@ -16,6 +17,8 @@ const App = () => {
           <Route path="/" element={<Hero />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/connections" element={<Connections />} />
+          <Route path="/requests" element={<ConnectionRequests />} />
         </Route>
       </Routes>
     </>

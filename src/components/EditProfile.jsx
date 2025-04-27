@@ -14,7 +14,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
   const [bio, setBio] = useState(user.bio);
   const [avatar, setAvatar] = useState(user.avatar);
   const [age, setAge] = useState(user.age);
-  const [gender, setGender] = useState(user.gender);
+  const [gender, setGender] = useState(user.gender || "male");
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
 

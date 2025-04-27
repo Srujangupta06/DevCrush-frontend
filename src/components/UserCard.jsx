@@ -4,7 +4,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
 const UserCard = ({ userInfo }) => {
-  const { avatar, firstName, lastName, bio ,age} = userInfo;
+  const { avatar, firstName, lastName, bio} = userInfo;
   const [isInterested, setIsInterested] = useState("false");
   return (
     <div className="card bg-base-100 w-80 shadow-lg">

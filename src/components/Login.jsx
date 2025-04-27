@@ -3,7 +3,7 @@ import { useState } from "react";
 import { RxCross2 } from "react-icons/rx";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Tooltip as ReactTooltip } from "react-tooltip";
+import { toast } from "react-hot-toast";
 import { addUser } from "../utils/userSlice";
 import { BASE_URL } from "../utils/constants";
 const Login = () => {
@@ -30,6 +30,9 @@ const Login = () => {
       );
 
       dispatch(addUser(response.data.data));
+      toast.success("Login Successfull", {
+        duration: 2000,
+      });
       navigate("/feed");
     } catch (err) {
       setErrorMessage(err?.response?.data?.message || "Something Went Wrong");

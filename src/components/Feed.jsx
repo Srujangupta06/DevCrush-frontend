@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { addFeed } from "../utils/feedSlice";
 import UserCard from "./UserCard";
 
+
 const Feed = () => {
   const dispatch = useDispatch();
   const feed = useSelector((store) => store.feed);
@@ -26,9 +27,9 @@ const Feed = () => {
   }, []);
 
   return (
-    feed && (
+    feed &&  (
       <div className="flex flex-col items-center justify-center min-h-[80vh]">
-        <UserCard userInfo={feed[1]} />
+        <UserCard userInfo={feed[0]} />
       </div>
     )
   );
