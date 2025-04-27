@@ -28,6 +28,8 @@
 - Developed Connections Route to display all user connections
 - Page for to display all connection requests of loggedIn User
 - added functionality for accept or reject connection request
+- Functionality for sending connection request/ignoring connection Request
+- Signup New User
 
 
 

@@ -7,12 +7,14 @@ import Feed from "./components/Feed";
 import { Toaster } from "react-hot-toast";
 import Connections from "./components/Connections";
 import ConnectionRequests from "./components/Request";
+import SignUp from "./components/SignUp";
 const App = () => {
   return (
     <>
       <Toaster position="top-center" />
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/auth/login" element={<Login />} />
+        <Route path="/auth/signup" element={<SignUp/>} />
         <Route path="/" element={<Body />}>
           <Route path="/" element={<Hero />} />
           <Route path="/feed" element={<Feed />} />

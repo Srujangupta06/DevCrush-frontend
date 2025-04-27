@@ -9,6 +9,7 @@ const Connections = () => {
   const connections = useSelector((store) => store.connections);
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+
   const fetchConnections = async () => {
     try {
       const response = await axios.get(BASE_URL + "/user/connections", {
@@ -19,16 +20,19 @@ const Connections = () => {
       toast.error(err?.response?.data?.message || "Something Went Wrong");
     }
   };
+
   useEffect(() => {
     fetchConnections();
   }, []);
 
-  if (!connections) return;
+  if (!connections) return null;
 
   if (connections.length === 0) {
     return (
-      <div className="min-h-[80vh] flex flex-col justify-center items-center">
-        <h1 className="text-lg text-[#727171]">You have no Connections</h1>
+      <div className="min-h-[80vh] flex flex-col justify-center items-center px-4">
+        <h1 className="text-lg text-[#727171] text-center">
+          You have no Connections
+        </h1>
       </div>
     );
   }
@@ -36,37 +40,38 @@ const Connections = () => {
   return (
     connections &&
     user && (
-      <div className="px-16 py-4 min-h-[80vh]">
-        <h1 className="text-xl text-[#727171] my-4 text-center">
-          {user.firstName} you have{" "}
+      <div className="px-4 md:px-16 py-6 min-h-[80vh] flex flex-col items-center">
+        <h1 className="text-lg md:text-xl text-[#727171] my-4 text-center">
+          {user.firstName}, you have{" "}
           <span className="text-[#BF5CC9] font-semibold">
             {connections.length}
           </span>{" "}
           {connections.length === 1 ? "Connection" : "Connections"}
         </h1>
-        <ul className="flex flex-wrap gap-y-4 mt-8 flex-col items-center">
+
+        <ul className="flex flex-col gap-6 mt-8 w-full md:w-[80%] lg:w-[60%]">
           {connections.map((eachConnection) => {
             const { avatar, firstName, lastName, _id, gender, age, bio } =
               eachConnection;
             return (
               <li
-                className="flex gap-x-6 w-[50%] shadow-md p-6 rounded-sm bg-white/50"
                 key={_id}
+                className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full bg-white p-6 rounded-md shadow-md"
               >
                 <img
                   src={avatar}
-                  alt="profile pic"
-                  className="w-18 h-18 rounded-full object-cover shadow-md"
+                  alt="Profile"
+                  className="w-24 h-24 rounded-full object-cover shadow-md"
                 />
-                <div className="flex flex-col gap-y-1">
-                  <h3 className="text-[#BF5CC9] font-[600] ">
+                <div className="flex flex-col text-center md:text-left">
+                  <h3 className="text-[#BF5CC9] font-semibold text-lg">
                     {firstName} {lastName}
                   </h3>
                   <p className="text-[#727171]">
-                    {age && <span className="text-[#727171]">{age}</span>},{" "}
+                    {age && <span>{age}</span>},{" "}
                     {gender[0].toUpperCase() + gender.slice(1).toLowerCase()}
                   </p>
-                  <p className="text-[#727171] text-sm italic">{bio}</p>
+                  <p className="text-[#727171] text-sm italic mt-1">{bio}</p>
                 </div>
               </li>
             );

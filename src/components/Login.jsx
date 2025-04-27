@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
-import { RxCross2 } from "react-icons/rx";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { addUser } from "../utils/userSlice";
 import { BASE_URL } from "../utils/constants";
+import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 const Login = () => {
-  const [email, setEmail] = useState("srujan@gmail.com");
-  const [password, setPassword] = useState("Srujan@0610");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const onHandleLogin = (e) => {
@@ -42,27 +44,16 @@ const Login = () => {
   return (
     <main className="min-h-[80vh] flex flex-col items-center justify-center">
       <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
-        {/* <button
-          data-tooltip-id="close-login-tooltip"
-          data-tooltip-content={"Close"}
-          className="hover:bg-[#9853a0] cursor-pointer bg-[#BF5CC9] w-6 h-6 rounded-full flex flex-col items-center justify-center absolute top-[-15px] right-[-15px]"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          <RxCross2 className="text-white" />
-        </button>
-        <ReactTooltip id="close-login-tooltip" /> */}
         <h1 className="text-xl font-semibold text-center mb-4">Login</h1>
-        <form className="px-8" onSubmit={onHandleLogin}>
+        <form className="px-4 md:px-8"onSubmit={onHandleLogin}>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2">
+            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">
               Email
             </label>
             <input
               id="email"
               type="email"
-              className="w-full border border-[#a7a7a7] px-1.5 py-0.5 rounded-[3px]"
+              className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm outline-none"
               placeholder="Enter your Email"
               value={email}
               onChange={(e) => {
@@ -75,24 +66,42 @@ const Login = () => {
             <label htmlFor="password" className="block mb-2">
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              className="w-full border border-[#a7a7a7] px-1.5 py-0.5 rounded-[3px]"
-              placeholder="Enter your Password"
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                setErrorMessage("");
-              }}
-            />
+            <div className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm outline-none flex items-center">
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                className="flex-grow px-1 rounded-[3px] outline-none"
+                placeholder="Enter your Password"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setErrorMessage("");
+                }}
+              />
+              {!showPassword ? (
+                <IoEyeOutline
+                  className="mr-2 cursor-pointer text-lg"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              ) : (
+                <IoEyeOffOutline
+                  className="mr-2 cursor-pointer text-lg"
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              )}
+            </div>
           </div>
           {errorMessage && (
             <p className="text-red-700 text-sm mb-2">*{errorMessage}</p>
           )}
-          <button className="bg-[#BF5CC9] rounded-[4px] text-white py-1.5  text-sm px-4 cursor-pointer hover:bg-[#9853a0]">
-            Login
-          </button>
+          <div className="flex justify-between items-center">
+            <button className="bg-[#BF5CC9] rounded-[4px] text-white py-1.5  text-sm px-4 cursor-pointer hover:bg-[#9853a0]">
+              Login
+            </button>
+            <Link to="/auth/signup" className="underline text-[#BF5CC9]">
+              <p className="text-sm  text-[#BF5CC9]">Create New Account</p>
+            </Link>
+          </div>
         </form>
       </div>
     </main>

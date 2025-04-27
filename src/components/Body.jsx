@@ -6,6 +6,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 const Body = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -19,9 +20,9 @@ const Body = () => {
       dispatch(addUser(response.data));
     } catch (err) {
       if (err.status === 401) {
-        navigate("/login");
+        navigate("/auth/login");
       }
-      console.error(err);
+      toast.error(err.message);
     }
   };
 

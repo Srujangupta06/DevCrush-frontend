@@ -13,23 +13,23 @@ const Profile = () => {
     user && (
       <div className="py-8 flex flex-col items-center min-h-[80vh]">
         {!isProfileEdit && (
-          <div className=" bg-white w-[40%] p-8 rounded-xl shadow-md relative">
-            <div className="flex items-center gap-x-8 mb-4">
+          <div className=" bg-white w-[90%] md:w-[40%] p-6 md:p-8 rounded-xl shadow-md relative">
+            <div className="flex flex-col md:flex-row items-center gap-y-8 md:gap-x-8 mb-4">
               {/*Profile Pic */}
               <img
                 src={user.avatar}
                 alt="profile pic"
                 className="w-36 h-36 rounded-full object-cover shadow-md"
               />
-              <div>
+              <div className="w-full flex flex-col items-center gap-y-1 md:items-start md:gap-y-0">
                 {/* Name and Email */}
-                <h2 className="text-2xl font-semibold text-[#BF5CC9] mb-1">
+                <h2 className="text-xl md:text-2xl font-semibold text-[#BF5CC9] mb-2">
                   {user.firstName} {user.lastName}
                 </h2>
-                <p className="text-[#727171] mb-2 text-md">{user.email}</p>
+                <p className="text-[#727171] mb-2 text-sm md:text-md">{user.email}</p>
                 <p className="text-[#727171] mb-2 text-sm">
                   Life Version(age):{" "}
-                  <span className="text-[#BF5CC9] font-semibold text-lg">
+                  <span className="text-[#BF5CC9] font-semibold text-md md:text-lg">
                     v{user.age}.0.0
                   </span>
                 </p>

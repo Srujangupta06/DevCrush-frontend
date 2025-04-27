@@ -20,19 +20,19 @@ const Header = () => {
       toast.success("Logout Successfull", {
         duration: 2000,
       });
-      navigate("/login");
+      navigate("/auth/login");
     } catch (err) {
       console.error(err);
     }
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm px-16">
+    <div className="navbar bg-base-100 shadow-sm md:px-16 px-6">
       <Link to="/" className="flex-1">
-        <img src={logoUrl} alt="logo" className="w-44" />
+        <img src={logoUrl} alt="logo" className="w-28 md:w-44" />
       </Link>
-      <div className="flex gap-2">
-        {user && (
+      {user && (
+        <div className="flex gap-2">
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -68,8 +68,8 @@ const Header = () => {
               </li>
             </ul>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

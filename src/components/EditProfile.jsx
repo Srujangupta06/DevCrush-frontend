@@ -64,28 +64,28 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
       setAvatar(e.target.files[0]);
     }
   };
+  if (!user) return null;
   return (
-    <div className="w-[45%] mx-auto">
-      <h2 className="text-xl font-semibold text-center mb-4 text-[#BF5CC9]">
+    <div className="w-[95%] sm:w-[85%] md:w-[65%] lg:w-[45%] mx-auto">
+      <h2 className="text-xl sm:text-2xl font-semibold text-center mb-4 text-[#BF5CC9]">
         Edit Profile
       </h2>
 
       <form
-        className="w-full bg-white p-8 rounded-xl shadow-md border border-gray-200 space-y-6"
+        className="w-full bg-white p-4 sm:p-6 md:p-8 rounded-xl shadow-md border border-gray-200 space-y-6"
         onSubmit={onHandleSaveChanges}
       >
-        {/*User Profile Picture */}
-        <div className="relative w-40 h-40 mx-auto rounded-full shadow-md border border-gray-200">
+        {/* Profile Picture */}
+        <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mx-auto rounded-full shadow-md border border-gray-200">
+          {/* Avatar logic (same as before) */}
           {avatar ? (
             typeof avatar === "string" ? (
-              // If avatar is string URL, show directly
               <img
                 src={avatar}
                 alt="profile pic"
                 className="w-full h-full rounded-full object-cover"
               />
             ) : (
-              // If avatar is a file object, create object URL
               <img
                 src={URL.createObjectURL(avatar)}
                 alt="profile pic"
@@ -93,7 +93,6 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
               />
             )
           ) : (
-            // If no avatar, show initials
             <div className="w-full h-full flex flex-col items-center justify-center">
               <h1 className="text-3xl font-semibold text-gray-700">
                 {firstName[0]} {lastName[0]}
@@ -101,10 +100,10 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             </div>
           )}
 
-          {/* Camera icon for uploading */}
-          <div className=" absolute bottom-5 right-[5px]  flex flex-col items-center justify-center p-1 rounded-full bg-white/50 border border-gray-300">
+          {/* Camera Icon */}
+          <div className="absolute bottom-4 right-3 flex flex-col items-center justify-center p-1 rounded-full bg-white/50 border border-gray-300">
             <MdCameraAlt
-              className="text-[#727171] cursor-pointer text-xl "
+              className="text-[#727171] cursor-pointer text-lg sm:text-xl"
               onClick={handleIconClick}
               data-tooltip-id="profile-pic-tooltip"
               data-tooltip-content={"Change Profile Picture"}
@@ -112,7 +111,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             <input
               type="file"
               ref={fileInputRef}
-              className="hidden outline-none"
+              className="hidden"
               accept="image/*"
               onChange={handleProfilePicChange}
             />
@@ -120,8 +119,9 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
           </div>
         </div>
 
-        <div className="flex gap-4">
-          <div className="w-1/2">
+        {/* Form Fields */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="w-full sm:w-1/2">
             <label
               htmlFor="firstName"
               className="block mb-1 text-sm font-medium text-gray-700"
@@ -132,14 +132,13 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
               id="firstName"
               type="text"
               value={firstName}
-              onChange={(e) => {
-                setfirstName(e.target.value);
-              }}
+              onChange={(e) => setfirstName(e.target.value)}
               placeholder="First Name"
               className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
             />
           </div>
-          <div className="w-1/2">
+
+          <div className="w-full sm:w-1/2">
             <label
               htmlFor="lastName"
               className="block mb-1 text-sm font-medium text-gray-700"
@@ -150,15 +149,14 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
               id="lastName"
               type="text"
               value={lastName}
-              onChange={(e) => {
-                setlastName(e.target.value);
-              }}
+              onChange={(e) => setlastName(e.target.value)}
               placeholder="Last Name"
               className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
             />
           </div>
         </div>
 
+        {/* Email */}
         <div>
           <label
             htmlFor="email"
@@ -171,12 +169,13 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             type="email"
             onChange={(e) => setemail(e.target.value)}
             value={email}
-            disabled={true}
+            disabled
             placeholder="you@example.com"
-            className="cursor-not-allowed w-full border border-gray-300 bg-gray-100 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
+            className="w-full cursor-not-allowed border border-gray-300 bg-gray-100 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
           />
         </div>
 
+        {/* Skills */}
         <div>
           <label
             htmlFor="skills"
@@ -188,14 +187,13 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             id="skills"
             type="text"
             value={skills}
-            onChange={(e) => {
-              setSkills(e.target.value);
-            }}
+            onChange={(e) => setSkills(e.target.value)}
             placeholder="React, MongoDB, UI Design"
             className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
           />
         </div>
 
+        {/* Bio */}
         <div>
           <label
             htmlFor="bio"
@@ -207,16 +205,15 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             id="bio"
             rows="3"
             value={bio}
-            onChange={(e) => {
-              setBio(e.target.value);
-            }}
+            onChange={(e) => setBio(e.target.value)}
             placeholder="A short bio about yourself..."
             className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm resize-none focus:outline-none focus:ring-1 focus:ring-purple-400"
           ></textarea>
         </div>
 
-        <div className="flex gap-4">
-          <div className="w-1/2">
+        {/* Age and Gender */}
+        <div className="flex flex-col sm:flex-row gap-4">
+          <div className="w-full sm:w-1/2">
             <label
               htmlFor="age"
               className="block mb-1 text-sm font-medium text-gray-700"
@@ -226,15 +223,14 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             <input
               id="age"
               value={age}
-              onChange={(e) => {
-                setAge(e.target.value);
-              }}
+              onChange={(e) => setAge(e.target.value)}
               type="number"
               placeholder="Enter your age"
               className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
             />
           </div>
-          <div className="w-1/2">
+
+          <div className="w-full sm:w-1/2">
             <label
               htmlFor="gender"
               className="block mb-1 text-sm font-medium text-gray-700"
@@ -243,9 +239,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
             </label>
             <select
               value={gender}
-              onChange={(e) => {
-                setGender(e.target.value);
-              }}
+              onChange={(e) => setGender(e.target.value)}
               id="gender"
               className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
             >
@@ -255,17 +249,19 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
           </div>
         </div>
 
-        <div className="flex gap-4">
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 w-full">
           <button
             type="submit"
-            className={`cursor-pointer w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-[#BF5CC9] text-white hover:bg-[#9853a0] hover:border-[#9853a0] border border-[#BF5CC9]`}
+            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-[#BF5CC9] text-white hover:bg-[#9853a0] hover:border-[#9853a0] border border-[#BF5CC9]"
           >
             Save Changes
           </button>
+
           <button
             type="button"
             onClick={() => setIsProfileEdit(false)}
-            className={`cursor-pointer grow py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-white border border-[#BF5CC9] text-[#BF5CC9] hover:bg-white/50 hover:border-[#9853a0] `}
+            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-white border border-[#BF5CC9] text-[#BF5CC9] hover:bg-white/50 hover:border-[#9853a0]"
           >
             Cancel
           </button>
