@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   return (
     <main className="min-h-[80vh] flex flex-col items-center justify-center">
@@ -17,7 +19,14 @@ const Hero = () => {
         <div className="flex gap-x-2 md:gap-x-6">
           <button
             className="whitespace-nowrap hover:bg-[#9853a0] hover:border-[#9853a0] bg-[#BF5CC9] px-6 text-white py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]"
-            onClick={() => navigate("/feed")}
+            onClick={() => {
+              if (user) {
+                navigate("/feed");
+              }
+              else{
+                navigate('/auth/login')
+              }
+            }}
           >
             Pair Up Now
           </button>

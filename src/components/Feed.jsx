@@ -11,7 +11,7 @@ const Feed = () => {
 
   const getFeed = async () => {
     try {
-      
+      if (feed) return;
       const response = await axios.get(BASE_URL + "/user/feed", {
         withCredentials: true,
       });

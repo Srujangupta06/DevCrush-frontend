@@ -22,7 +22,6 @@ const Body = () => {
       if (err.status === 401) {
         navigate("/auth/login");
       }
-      toast.error(err.message);
     }
   };
 

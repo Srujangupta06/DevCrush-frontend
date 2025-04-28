@@ -5,13 +5,11 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import appStore from "./utils/appstore.js";
-import 'react-tooltip/dist/react-tooltip.css'
+import "react-tooltip/dist/react-tooltip.css";
 createRoot(document.getElementById("root")).render(
   <Provider store={appStore}>
     <BrowserRouter basename="/">
-      <StrictMode>
-        <App />
-      </StrictMode>
+      <App />
     </BrowserRouter>
   </Provider>
 );

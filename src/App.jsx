@@ -8,20 +8,31 @@ import { Toaster } from "react-hot-toast";
 import Connections from "./components/Connections";
 import ConnectionRequests from "./components/Request";
 import SignUp from "./components/SignUp";
+import PageNotFound from "./components/PageNotFound";
+import Header from "./components/Header";
 const App = () => {
   return (
     <>
       <Toaster position="top-center" />
       <Routes>
         <Route path="/auth/login" element={<Login />} />
-        <Route path="/auth/signup" element={<SignUp/>} />
+        <Route path="/auth/signup" element={<SignUp />} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <Hero />
+            </>
+          }
+        />
         <Route path="/" element={<Body />}>
-          <Route path="/" element={<Hero />} />
           <Route path="/feed" element={<Feed />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/requests" element={<ConnectionRequests />} />
         </Route>
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </>
   );

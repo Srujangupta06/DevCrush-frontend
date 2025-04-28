@@ -75,7 +75,7 @@ const Profile = () => {
               )}
             </div>
             <button
-              data-tooltip-id="close-login-tooltip"
+              data-tooltip-id="close-profile-tooltip"
               data-tooltip-content={"Close Profile"}
               className="hover:bg-[#9853a0] cursor-pointer bg-[#BF5CC9] w-6 h-6 rounded-full flex flex-col items-center justify-center absolute top-[-15px] right-[-15px]"
               onClick={() => {
@@ -84,7 +84,7 @@ const Profile = () => {
             >
               <RxCross2 className="text-white" />
             </button>
-            <ReactTooltip id="close-login-tooltip" place="bottom" />
+            <ReactTooltip id="close-profile-tooltip" place="bottom" />
           </div>
         )}
         {/* Edit Profile */}

@@ -6,7 +6,8 @@ import { BASE_URL } from "../utils/constants";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
-
+import { RxCross2 } from "react-icons/rx";
+import { Tooltip as ReactTooltip } from "react-tooltip";
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -47,6 +48,17 @@ const SignUp = () => {
   return (
     <main className="min-h-[100vh] flex flex-col items-center justify-center">
       <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
+        <button
+          data-tooltip-id="close-signup-tooltip"
+          data-tooltip-content={"Close Profile"}
+          className="hover:bg-[#9853a0] cursor-pointer bg-[#BF5CC9] w-6 h-6 rounded-full flex flex-col items-center justify-center absolute top-[-15px] right-[-15px]"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <RxCross2 className="text-white" />
+        </button>
+        <ReactTooltip id="close-signup-tooltip" place="top" />
         <h1 className="text-xl font-semibold text-center mb-4">Sign Up</h1>
         <form className="px-4 md:px-8" onSubmit={onHandleSignUp}>
           {/*First Name */}
