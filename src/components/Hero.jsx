@@ -13,7 +13,7 @@ const Hero = () => {
           <span className="text-[#BF5CC9]">&lt; Dev</span>
           <span className="text-[#727171]">Crush /&gt;</span>
         </h1>
-        <p className="text-sm text-center md:text-lg text-[#727171]">
+        <p className="text-md text-center md:text-lg text-[#727171]">
           Meet devs who share your stack, your vibe, or your startup dreams.
         </p>
         <div className="flex gap-x-2 md:gap-x-6">
