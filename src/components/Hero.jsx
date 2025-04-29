@@ -10,7 +10,7 @@ const Hero = () => {
         {/* <div className="absolute w-28 h-28 inset-0  bg-[#0FEFFF] rounded-full blur-2xl opacity-30 right-5 top-0"></div>
         <div className="absolute w-28 h-28 inset-0  bg-[#613DFF] rounded-full blur-2xl opacity-30 bottom-0"></div> */}
         <h1 className="text-3xl md:text-4xl lg:text-5xl font-semibold ">
-          <span className="text-[#BF5CC9]">&lt; Dev</span>
+          <span className="text-[#BF5CC9]">&lt; Dev </span>
           <span className="text-[#727171]">Crush /&gt;</span>
         </h1>
         <p className="text-md text-center md:text-lg text-[#727171]">
@@ -22,9 +22,8 @@ const Hero = () => {
             onClick={() => {
               if (user) {
                 navigate("/feed");
-              }
-              else{
-                navigate('/auth/login')
+              } else {
+                navigate("/auth/login");
               }
             }}
           >
