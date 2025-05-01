@@ -45,7 +45,7 @@ const VerifyEmail = () => {
     <main className="min-h-screen flex flex-col items-center justify-center px-4">
       <div className="w-full max-w-xl p-8 flex items-center justify-center flex-col">
         <IoMailOpenOutline className="text-6xl text-[#727171] mb-4" />
-        <h1 className="text-xl text-[#727171] mb-2">
+        <h1 className="text-xl text-[#727171] mb-2 text-center">
           We are verifying your email
         </h1>
         <p className="text-sm text-[#727171] mb-6">

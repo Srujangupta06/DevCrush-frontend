@@ -62,6 +62,11 @@ const Header = () => {
                   Connections
                 </Link>
               </li>
+              <li>
+                <Link className="justify-between" to="/forgot-password">
+                 Password-Reset
+                </Link>
+              </li>
 
               <li>
                 <button onClick={onHandleLogOut}>Logout</button>

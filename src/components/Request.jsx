@@ -41,7 +41,7 @@ const ConnectionRequests = () => {
 
   if (requests.length === 0) {
     return (
-      <div className="min-h-[80vh] flex flex-col justify-center items-center">
+      <div className="min-h-screen flex flex-col justify-center items-center">
         <h1 className="text-lg text-[#727171]">You have no requests</h1>
       </div>
     );
@@ -50,7 +50,7 @@ const ConnectionRequests = () => {
   return (
     requests &&
     user && (
-      <div className="px-4">
+      <div className="px-4 min-h-screen">
         {" "}
         {/* added padding for small screens */}
         <h1 className="text-lg text-[#727171] my-8 text-center">

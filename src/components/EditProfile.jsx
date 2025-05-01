@@ -73,7 +73,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
   };
   if (!user) return null;
   return (
-    <div className="w-[95%] sm:w-[85%] md:w-[65%] lg:w-[45%] mx-auto">
+    <div className="w-[90%] sm:w-[85%] md:w-[65%] lg:w-[45%] mx-auto">
       <h2 className="text-xl sm:text-2xl font-semibold text-center mb-4 text-[#BF5CC9]">
         Edit Profile
       </h2>
@@ -259,7 +259,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
         </div>
 
         {/* Age and Gender */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-row gap-4">
           <div className="w-full sm:w-1/2">
             <label
               htmlFor="age"

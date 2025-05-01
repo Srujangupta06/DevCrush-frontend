@@ -3,7 +3,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 const PageNotFound = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col items-center justify-center h-screen gap-y-6 md:px-0 px-6">
+    <div className="flex flex-col items-center justify-center min-h-screen gap-y-6 md:px-0 px-6">
       <h1 className="text-3xl font-semibold text-[#BF5CC9]">
         404 Page Not Found
       </h1>

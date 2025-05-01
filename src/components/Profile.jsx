@@ -11,7 +11,7 @@ const Profile = () => {
   const navigate = useNavigate();
   return (
     user && (
-      <div className="py-8 flex flex-col items-center min-h-[80vh]">
+      <div className="py-8 flex flex-col items-center min-h-screen">
         {!isProfileEdit && (
           <div className=" bg-white w-[90%] md:w-[40%] p-6 md:p-8 rounded-xl shadow-md relative">
             <div className="flex flex-col md:flex-row items-center gap-y-8 md:gap-x-8 justify-between mb-8">

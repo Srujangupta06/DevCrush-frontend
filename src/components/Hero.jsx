@@ -5,7 +5,7 @@ const Hero = () => {
   const user = useSelector((store) => store.user);
   const navigate = useNavigate();
   return (
-    <main className="min-h-[80vh] flex flex-col items-center justify-center">
+    <main className="min-h-[90vh] flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-y-6 px-6 md:px-0">
         {/* <div className="absolute w-28 h-28 inset-0  bg-[#0FEFFF] rounded-full blur-2xl opacity-30 right-5 top-0"></div>
         <div className="absolute w-28 h-28 inset-0  bg-[#613DFF] rounded-full blur-2xl opacity-30 bottom-0"></div> */}

@@ -44,7 +44,7 @@ const Login = () => {
   };
 
   return (
-    <main className="min-h-[80vh] flex flex-col items-center justify-center">
+    <main className="min-h-screen flex flex-col items-center justify-center">
       <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
         <button
           data-tooltip-id="close-login-tooltip"

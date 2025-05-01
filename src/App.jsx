@@ -12,6 +12,8 @@ import PageNotFound from "./components/PageNotFound";
 import Header from "./components/Header";
 import VerifyEmail from "./components/VerifyEmail";
 import FeedProfile from "./components/FeedProfile";
+import Footer from "./components/Footer";
+import ForgotPassword from "./components/ForgotPassword";
 const App = () => {
   return (
     <>
@@ -26,6 +28,7 @@ const App = () => {
             <>
               <Header />
               <Hero />
+              <Footer />
             </>
           }
         />
@@ -35,6 +38,7 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/requests" element={<ConnectionRequests />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
         </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
