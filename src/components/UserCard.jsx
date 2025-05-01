@@ -1,5 +1,4 @@
 import { SlDislike } from "react-icons/sl";
-import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { useState } from "react";
 import { Tooltip } from "react-tooltip";
@@ -8,9 +7,13 @@ import { BASE_URL } from "../utils/constants";
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
+import { IoCloseSharp } from "react-icons/io5";
+import { FaHeart } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+import { GoArrowUpRight } from "react-icons/go";
+
 const UserCard = ({ userInfo }) => {
-  const { avatar, firstName, lastName, bio } = userInfo;
-  const [isInterested, setIsInterested] = useState("false");
+  const { avatar, firstName, lastName, bio, _id } = userInfo;
   const dispatch = useDispatch();
   const handleSendRequest = async (status, userId) => {
     try {
@@ -25,7 +28,56 @@ const UserCard = ({ userInfo }) => {
     }
   };
   return (
-    <div className="card bg-base-100 w-[80%] md:w-80 shadow-lg">
+    <div className="card bg-base-100 w-[80%] md:w-80 shadow-xl  rounded-2xl overflow-hidden h-[70vh] relative ">
+      <figure className="">
+        <img
+          src={avatar}
+          alt="profile pic"
+          className="h-full w-full object-cover"
+        />
+        <div className="absolute bg-black/30 backdrop-blur-sm w-full bottom-0 px-4 py-2 text-white">
+          <h2 className="text-xl font-semibold tracking-wide text-white">
+            {firstName + " " + lastName}
+          </h2>
+          <p className="italic text-sm mt-1 text-gray-200">{bio}</p>
+          <div className="flex justify-between items-end">
+            {/* Buttons for Controlling the Feed */}
+            <div className="flex gap-4 mt-3">
+              {/* Decline Button */}
+              <button
+                onClick={() => {
+                  handleSendRequest("ignored", userInfo._id);
+                }}
+                className="border cursor-pointer border-red-500 text-red-400 hover:bg-red-600 hover:text-white transition duration-200 rounded-full p-2"
+              >
+                <IoCloseSharp className="text-2xl" />
+              </button>
+
+              {/* Accept Button with Gradient */}
+              <button
+                className="bg-gradient-to-r cursor-pointer from-pink-400 via-fuchsia-500 to-purple-500 text-white hover:scale-105 transition-transform duration-300 rounded-full p-2 shadow-md"
+                onClick={() => {
+                  handleSendRequest("interested", userInfo._id);
+                }}
+              >
+                <FaHeart className="text-2xl" />
+              </button>
+            </div>
+            <Link to={`/${_id}/profile/view`} className="text-sm">
+              View Profile
+              <GoArrowUpRight className="inline-block ml-2" />
+            </Link>
+          </div>
+        </div>
+      </figure>
+    </div>
+  );
+};
+
+export default UserCard;
+
+{
+  /*<div className="card bg-base-100 w-[80%] md:w-80 shadow-lg">
       <figure className="px-10 pt-10">
         <img
           src={avatar}
@@ -67,8 +119,5 @@ const UserCard = ({ userInfo }) => {
           <Tooltip id="feed-interested-tooltip" place="bottom" />
         </div>
       </div>
-    </div>
-  );
-};
-
-export default UserCard;
+    </div>*/
+}

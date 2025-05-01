@@ -3,11 +3,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoEyeOutline, IoEyeOffOutline } from "react-icons/io5";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
-import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import { RxCross2 } from "react-icons/rx";
 import { Tooltip as ReactTooltip } from "react-tooltip";
+import EmailAlert from "./EmailAlert";
+import { ClipLoader } from "react-spinners";
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,7 +17,8 @@ const SignUp = () => {
   const [gender, setGender] = useState("male");
   const [age, setAge] = useState(18);
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
+  const [showEmailAlert, setShowEmailAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const onHandleSignUp = (e) => {
     e.preventDefault();
@@ -34,19 +35,18 @@ const SignUp = () => {
 
   const registerUser = async (userData) => {
     try {
-      const response = await axios.post(BASE_URL + "/auth/signup", userData, {
-        withCredentials: true,
-      });
-      dispatch(addUser(response.data.data));
-      toast.success("Registration Successfull");
-      navigate("/profile");
+      setIsLoading(true);
+      const response = await axios.post(BASE_URL + "/auth/signup", userData);
+      setIsLoading(false);
+      setShowEmailAlert(true);
     } catch (err) {
+      setIsLoading(false);
       setErrorMessage(err?.response?.data?.message);
     }
   };
 
   return (
-    <main className="min-h-[100vh] flex flex-col items-center justify-center">
+    <main className="min-h-[100vh] flex flex-col items-center justify-center relative">
       <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
         <button
           data-tooltip-id="close-signup-tooltip"
@@ -203,12 +203,22 @@ const SignUp = () => {
             <Link to="/auth/login" className="underline text-[#BF5CC9]">
               <p className="text-sm  text-[#BF5CC9]">Already Have an Account</p>
             </Link>
-            <button className="whitespace-nowrap bg-[#BF5CC9] rounded-[4px] text-white py-1.5  text-sm px-4 cursor-pointer hover:bg-[#9853a0]">
-              Sign Up
+            <button
+              disabled={isLoading}
+              className={`min-w-[100px] whitespace-nowrap rounded-[4px] text-white py-1.5 text-sm px-4 flex items-center justify-center
+    ${
+      isLoading
+        ? "bg-[#BF5CC9] cursor-not-allowed"
+        : "bg-[#BF5CC9] hover:bg-[#9853a0] cursor-pointer"
+    }
+  `}
+            >
+              {isLoading ? <ClipLoader color="#fff" size={20} /> : "Sign Up"}
             </button>
           </div>
         </form>
       </div>
+      {showEmailAlert && <EmailAlert />}
     </main>
   );
 };

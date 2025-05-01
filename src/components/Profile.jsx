@@ -14,7 +14,7 @@ const Profile = () => {
       <div className="py-8 flex flex-col items-center min-h-[80vh]">
         {!isProfileEdit && (
           <div className=" bg-white w-[90%] md:w-[40%] p-6 md:p-8 rounded-xl shadow-md relative">
-            <div className="flex flex-col md:flex-row items-center gap-y-8 md:gap-x-8 mb-4 justify-between">
+            <div className="flex flex-col md:flex-row items-center gap-y-8 md:gap-x-8 justify-between mb-8">
               {/*Profile Pic */}
               <img
                 src={user.avatar}
@@ -24,9 +24,11 @@ const Profile = () => {
               <div className="w-full flex flex-col items-center gap-y-1 md:items-start md:gap-y-0">
                 {/* Name and Email */}
                 <h2 className="text-xl md:text-2xl font-semibold text-[#BF5CC9] mb-2">
-                  {user.firstName} {user.lastName}
+                  {user.firstName} {user.lastName && user.lastName}
                 </h2>
-                <p className="text-[#727171] mb-2 text-sm md:text-md">{user.email}</p>
+                <p className="text-[#727171] mb-2 text-sm md:text-md">
+                  {user.email}
+                </p>
                 <p className="text-[#727171] mb-2 text-sm">
                   Life Version(age):{" "}
                   <span className="text-[#BF5CC9] font-semibold text-md md:text-lg">
@@ -40,6 +42,30 @@ const Profile = () => {
                   <span>Edit Profile</span>
                   <LiaEdit className="inline ml-1 text-lg" />
                 </button>
+              </div>
+            </div>
+            {/* Role and Professional Experiece In years*/}
+            <div className="flex flex-col md:flex-row  gap-x-24">
+              {(user.experience > 0) && (
+                <div className="mb-4">
+                  <h5 className="text-md font-semibold text-[#BF5CC9] mb-2">
+                    Role
+                  </h5>
+
+                  <p className="text-[#727171] text-sm">{user.role}</p>
+                </div>
+              )}
+              {/* Professional Experience*/}
+              <div className="mb-4">
+                <h5 className="text-md font-semibold text-[#BF5CC9] mb-2">
+                  Experience
+                </h5>
+
+                <p className="text-[#727171] text-sm">
+                  {user.experienceInYears > 0
+                    ? user.experienceInYears + " Years"
+                    : "Fresher"}
+                </p>
               </div>
             </div>
             {/* Bio*/}
@@ -69,9 +95,7 @@ const Profile = () => {
                     ))}
                 </div>
               ) : (
-                <h3 className="text-[#727171]">
-                  No skills listed... yet.
-                </h3>
+                <h3 className="text-[#727171]">No skills listed... yet.</h3>
               )}
             </div>
             <button

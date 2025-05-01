@@ -6,34 +6,41 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 import toast from "react-hot-toast";
+
+
 const EditProfile = ({ user, setIsProfileEdit }) => {
   const [firstName, setfirstName] = useState(user.firstName);
-  const [lastName, setlastName] = useState(user.lastName);
+  const [lastName, setlastName] = useState(user.lastName || "");
   const [email, setemail] = useState(user.email);
-  const [skills, setSkills] = useState(user.skills);
+  const [skills, setSkills] = useState(user.skills || []);
+  const [role, setRole] = useState(user.role || "");
+  const [experience, setExperience] = useState(user.experienceInYears || 0);
   const [bio, setBio] = useState(user.bio);
   const [avatar, setAvatar] = useState(user.avatar);
   const [age, setAge] = useState(user.age);
   const [gender, setGender] = useState(user.gender || "male");
   const fileInputRef = useRef(null);
   const dispatch = useDispatch();
-
   const handleIconClick = () => {
     fileInputRef.current.click();
   };
   const onHandleSaveChanges = (e) => {
     e.preventDefault();
     // Check the new Data is same as prev data or not
+
     const formData = new FormData();
     formData.append("avatar", avatar);
     formData.append("firstName", firstName);
-    formData.append("lastName", lastName);
-    formData.append("skills", skills);
+    formData.append("lastName", lastName || "");
+    formData.append("skills", skills || []);
     formData.append("bio", bio);
     formData.append("age", age);
+    formData.append("role", role);
+    formData.append("experienceInYears", experience);
     formData.append("gender", gender);
 
-    editProfile(formData);
+     editProfile(formData);
+   
   };
   const editProfile = async (formData) => {
     const loadingId = toast.loading(
@@ -175,20 +182,60 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
           />
         </div>
 
+        {/*Professional Experience In Years */}
+        <div>
+          <label
+            htmlFor="email"
+            className="block mb-1 text-sm font-medium text-gray-700"
+          >
+            Experience <span className="text-xs">(in years)</span>
+          </label>
+          <input
+            id="experience"
+            type="number"
+            required
+            onChange={(e) => {
+              setExperience(e.target.value);
+            }}
+            value={experience}
+            placeholder="2"
+            className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
+          />
+        </div>
+        {/* Role */}
+        {experience > 0 && (
+          <div>
+            <label
+              htmlFor="email"
+              className="block mb-1 text-sm font-medium text-gray-700"
+            >
+              Role
+            </label>
+            <input
+              id="role"
+              type="text"
+              required
+              onChange={(e) => setRole(e.target.value)}
+              value={role}
+              placeholder="Ex: Application Developer"
+              className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
+            />
+          </div>
+        )}
         {/* Skills */}
         <div>
           <label
             htmlFor="skills"
             className="block mb-1 text-sm font-medium text-gray-700"
           >
-            Skills (comma separated)
+            Skills
           </label>
           <input
             id="skills"
             type="text"
             value={skills}
             onChange={(e) => setSkills(e.target.value)}
-            placeholder="React, MongoDB, UI Design"
+            placeholder="C, Java, Python, SQL, etc."
             className="w-full border border-gray-300 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-purple-400"
           />
         </div>
@@ -253,7 +300,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
         <div className="flex flex-col sm:flex-row gap-4 w-full">
           <button
             type="submit"
-            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-[#BF5CC9] text-white hover:bg-[#9853a0] hover:border-[#9853a0] border border-[#BF5CC9]"
+            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-[#BF5CC9] text-white hover:bg-[#9853a0] hover:border-[#9853a0] border border-[#BF5CC9] cursor-pointer"
           >
             Save Changes
           </button>
@@ -261,7 +308,7 @@ const EditProfile = ({ user, setIsProfileEdit }) => {
           <button
             type="button"
             onClick={() => setIsProfileEdit(false)}
-            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-white border border-[#BF5CC9] text-[#BF5CC9] hover:bg-white/50 hover:border-[#9853a0]"
+            className="w-full sm:w-1/2 py-2 px-4 rounded-md text-sm font-medium transition duration-200 bg-white border border-[#BF5CC9] text-[#BF5CC9] hover:bg-white/50 hover:border-[#9853a0] cursor-pointer"
           >
             Cancel
           </button>

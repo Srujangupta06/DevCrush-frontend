@@ -30,7 +30,7 @@ const Hero = () => {
             Pair Up Now
           </button>
           <button className="whitespace-nowrap hover:text-[#9853a0] hover:border-[#9853a0] text-[#BF5CC9] px-6 py-1.5 rounded-[4px] text-sm cursor-pointer border border-[#BF5CC9]">
-            Explore Devs
+            Learn More
           </button>
         </div>
         <div className="flex items-center gap-x-2 md:gap-x-4">

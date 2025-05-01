@@ -10,6 +10,8 @@ import ConnectionRequests from "./components/Request";
 import SignUp from "./components/SignUp";
 import PageNotFound from "./components/PageNotFound";
 import Header from "./components/Header";
+import VerifyEmail from "./components/VerifyEmail";
+import FeedProfile from "./components/FeedProfile";
 const App = () => {
   return (
     <>
@@ -17,6 +19,7 @@ const App = () => {
       <Routes>
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/signup" element={<SignUp />} />
+        <Route path="/auth/verify-email" element={<VerifyEmail />} />
         <Route
           path="/"
           element={
@@ -28,6 +31,7 @@ const App = () => {
         />
         <Route path="/" element={<Body />}>
           <Route path="/feed" element={<Feed />} />
+          <Route path="/:userId/profile/view" element={<FeedProfile />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/connections" element={<Connections />} />
           <Route path="/requests" element={<ConnectionRequests />} />
