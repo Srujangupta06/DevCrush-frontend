@@ -5,10 +5,26 @@ import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { removeUser } from "../utils/userSlice";
 import { toast } from "react-hot-toast";
+import { useEffect } from "react";
+import { addUser } from "../utils/userSlice";
 const Header = () => {
-  const user = useSelector((store) => store.user);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+  const fetchUserProfile = async () => {
+    try {
+      const response = await axios.get(BASE_URL + "/profile/view", {
+        withCredentials: true,
+      });
+      dispatch(addUser(response.data));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    fetchUserProfile();
+  },[]);
+
   const onHandleLogOut = async () => {
     try {
       await axios.post(
@@ -64,7 +80,7 @@ const Header = () => {
               </li>
               <li>
                 <Link className="justify-between" to="/forgot-password">
-                 Password-Reset
+                  Password-Reset
                 </Link>
               </li>
 

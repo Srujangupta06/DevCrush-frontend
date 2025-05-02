@@ -32,6 +32,16 @@ const App = () => {
             </>
           }
         />
+        {/* <Route
+          path="/feed"
+          element={
+            <>
+              <Header />
+              <Feed />
+              <Footer />
+            </>
+          }
+        /> */}
         <Route path="/" element={<Body />}>
           <Route path="/feed" element={<Feed />} />
           <Route path="/:userId/profile/view" element={<FeedProfile />} />

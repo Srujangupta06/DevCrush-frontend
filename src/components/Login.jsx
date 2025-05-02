@@ -48,7 +48,7 @@ const Login = () => {
       <div className="w-[90%] md:w-1/3 py-8 rounded-md bg-white/50 shadow-xl relative">
         <button
           data-tooltip-id="close-login-tooltip"
-          data-tooltip-content={"Close Profile"}
+          data-tooltip-content={"Close"}
           className="hover:bg-[#9853a0] cursor-pointer bg-[#BF5CC9] w-6 h-6 rounded-full flex flex-col items-center justify-center absolute top-[-15px] right-[-15px]"
           onClick={() => {
             navigate("/");
